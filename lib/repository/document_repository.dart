@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
@@ -47,7 +48,7 @@ class DocumentRepository {
     return error;
   }
 
-  Future<ErrorModel> getDocuments(String token) async {
+  Future<ErrorModel> getDocuments(String token, searchText) async {
     ErrorModel error = ErrorModel(
       error: 'Some unexpected error occurred',
       data: null,
@@ -64,14 +65,24 @@ class DocumentRepository {
       //todo: add advanced error handling
       switch(res.statusCode) {
         case 200:
-          List<DocumentModel> documents = [];
+          List<DocumentModel> ret = [];
+          List documents = [];
 
           for(int i=0; i<jsonDecode(res.body).length; i++) {
-            documents.add(DocumentModel.fromJson(jsonEncode(jsonDecode(res.body)[i])));
+            ret.add(DocumentModel.fromJson(jsonEncode(jsonDecode(res.body)[i])));
           }
+
+          ret.forEach((element) {
+            if(element.title.contains(searchText)) {
+              documents.add(element);
+            }
+          });
+
+
+          // print(documents);
           error = ErrorModel(
               error: null,
-              data: documents,
+              data: documents, //.where((doc) => doc.title.contains(searchText)),
           );
           break;
         default:

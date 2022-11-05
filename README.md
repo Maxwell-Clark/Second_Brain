@@ -16,3 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 for development:  flutter run -d chrome --web-port 3000
+
+make sure to make the host your current ip address in the constants file
