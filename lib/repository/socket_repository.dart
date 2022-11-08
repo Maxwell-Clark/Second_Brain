@@ -10,6 +10,10 @@ class SocketRepository {
     _socketClient.emit('join', docId);
   }
 
+  void leaveRoom(String docId) {
+    _socketClient.emit('disconnect', docId);
+  }
+
   void typing(Map<String, dynamic> data) {
     _socketClient.emit('typing', data);
   }

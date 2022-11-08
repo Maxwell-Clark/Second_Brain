@@ -37,11 +37,20 @@ io.on('connection', (socket) => {
     socket.on('save', (data) => {
         saveData(data);
     })
+
+    socket.on('disconnect', (docId) => {
+        socket.leave(docId);
+        console.log("socket disconnected " + socket.id);
+    })
 })
 const saveData = async (data) => {
     let document = await Document.findById(data.room);
-    document.contents = data.delta;
-    await document.save();
+    if(document) {
+        document.contents = data.delta;
+        await document.save();
+    }
+
+
 }
 
 server.listen(Port, "0.0.0.0", () => {

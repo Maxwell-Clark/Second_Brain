@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:second_brain/colors.dart';
 import 'package:second_brain/repository/auth_repository.dart';
 import 'package:second_brain/router.dart';
 import 'package:second_brain/screens/home_screen.dart';
@@ -46,6 +47,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: kGrayColor
       ),
       routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
         if(user!=null && user.token.isNotEmpty) {

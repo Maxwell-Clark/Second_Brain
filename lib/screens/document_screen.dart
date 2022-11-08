@@ -108,7 +108,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
     }
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: kWhiteColor,
+          backgroundColor: darkPrimary,
           elevation: 0,
           actions: [
             Padding(
@@ -148,11 +148,14 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
                   width: 250,
                   child: TextField(
                     controller: titleController,
+                    style: const TextStyle(
+                      color: lightPrimary
+                    ),
                     decoration: const InputDecoration(
                         border: InputBorder.none,
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: kBlueColor,
+                          color: lightPrimary,
                         )),
                         contentPadding: EdgeInsets.only(left: 10)),
                     onSubmitted: (value) => updateTitle(ref, value),
@@ -178,7 +181,10 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
               const SizedBox(
                 height: 10,
               ),
-              quill.QuillToolbar.basic(controller: _controller!),
+              quill.QuillToolbar.basic(
+                  controller: _controller!,
+                showHeaderStyle: true
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -186,7 +192,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
                 child: SizedBox(
                   width: 750,
                   child: Card(
-                    color: kWhiteColor,
+                    color: lightPrimary,
                     elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(30.0),
