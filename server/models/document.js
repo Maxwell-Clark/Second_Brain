@@ -24,6 +24,16 @@ const documentSchema = mongoose.Schema({
         required: false,
         type: Array,
         default: [],
+    },
+    pinned: {
+        required: false,
+        type: Boolean,
+        default: false
+    },
+    favorite: {
+        required:false,
+        type: Boolean,
+        default: false
     }
 });
 

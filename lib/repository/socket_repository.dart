@@ -11,7 +11,7 @@ class SocketRepository {
   }
 
   void leaveRoom(String docId) {
-    _socketClient.emit('disconnect', docId);
+    _socketClient.emit('leaveRoom', docId);
   }
 
   void typing(Map<String, dynamic> data) {

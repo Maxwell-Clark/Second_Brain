@@ -3,6 +3,8 @@ import 'dart:convert';
 class DocumentModel {
   final String title;
   final String uid;
+  final bool pinned;
+  final bool favorite;
   final List content;
   final DateTime createdAt;
   final String id;
@@ -13,6 +15,8 @@ class DocumentModel {
     required this.content,
     required this.createdAt,
     required this.id,
+    required this.pinned,
+    required this.favorite,
   });
 
   Map<String, dynamic> toMap() {
@@ -20,6 +24,8 @@ class DocumentModel {
       'title': title,
       'uid': uid,
       'contents': content,
+      'pinned': pinned,
+      'favorite': favorite,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'id': id,
     };
@@ -29,6 +35,8 @@ class DocumentModel {
     return DocumentModel(
       title: map['title'] ?? '',
       uid: map['uid'] ?? '',
+      pinned: map['pinned'] ?? '',
+      favorite: map['favorite'] ?? '',
       content: List.from(map['contents']),
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
       id: map['_id'] ?? '',

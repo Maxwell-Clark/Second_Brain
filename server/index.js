@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
         saveData(data);
     })
 
-    socket.on('disconnect', (docId) => {
+    socket.on('leaveRoom', (docId) => {
         socket.leave(docId);
         console.log("socket disconnected " + socket.id);
     })
@@ -49,8 +49,6 @@ const saveData = async (data) => {
         document.contents = data.delta;
         await document.save();
     }
-
-
 }
 
 server.listen(Port, "0.0.0.0", () => {

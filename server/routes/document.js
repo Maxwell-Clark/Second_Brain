@@ -37,6 +37,26 @@ documentRouter.post('/doc/title', auth, async (req, res)=> {
     }
 })
 
+documentRouter.put('/doc/:id/pinned', auth, async (req, res) => {
+    try {
+        const pinned = req.body.pinned;
+        const doc = await Document.findByIdAndUpdate(req.params.id, {pinned});
+        res.json(doc);
+    } catch (e) {
+        res.status(500).json({error:e.message})
+    }
+})
+
+documentRouter.put('/doc/:id/favorite', auth, async (req, res) => {
+    try {
+        const favorite = req.body.favorite;
+        const doc = await Document.findByIdAndUpdate(req.params.id, {favorite});
+        res.json(doc);
+    } catch (e) {
+        res.status(500).json({error:e.message})
+    }
+})
+
 documentRouter.get('/doc/:id', auth, async (req, res) => {
     try{
         const document = await Document.findById(req.params.id);

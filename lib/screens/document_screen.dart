@@ -108,7 +108,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
     }
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: darkPrimary,
+          backgroundColor: lightSecondary,
           elevation: 0,
           actions: [
             Padding(
@@ -181,9 +181,18 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
               const SizedBox(
                 height: 10,
               ),
-              quill.QuillToolbar.basic(
-                  controller: _controller!,
-                showHeaderStyle: true
+              Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: lightPrimary
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: quill.QuillToolbar.basic(
+                      controller: _controller!,
+                    showHeaderStyle: true
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 10,
